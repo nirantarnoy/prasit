@@ -60,7 +60,17 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $count_b = \backend\models\Building::find()->count();
+        $count_r = \backend\models\Room::find()->count();
+        $count_c = \backend\models\Customer::find()->count();
+        $count_empty = \backend\models\Room::find()->where(['room_status'=>1])->count();
+        return $this->render('index',
+            [
+                'count_b'=>$count_b,
+                'count_r'=>$count_r,
+                'count_c'=>$count_c,
+                'count_empty' => $count_empty
+            ]);
     }
 
     /**

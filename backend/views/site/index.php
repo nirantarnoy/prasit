@@ -40,7 +40,7 @@ $this->registerCss($css);
     <div class="row">
         <div class="col-lg-4">
             <div class="card">
-                <div class="data" style="color: #0c5460">5</div>
+                <div class="data" style="color: #0c5460"><?=$count_b?></div>
                 <div class="containerx">
                     <h4><b><i class="glyphicon glyphicon-home text-success"></i> จำนวนตึก</b></h4>
                 </div>
@@ -48,7 +48,7 @@ $this->registerCss($css);
         </div>
         <div class="col-lg-4">
             <div class="card">
-                <div class="data" style="color: #0c5460">150</div>
+                <div class="data" style="color: #0c5460"><?=number_format($count_r)?></div>
                 <div class="containerx">
                     <h4><b><i class="glyphicon glyphicon-tags text-info"></i> จำนวนห้องเช่า</b></h4>
 <!--                    <p>Architect & Engineer</p>-->
@@ -57,7 +57,7 @@ $this->registerCss($css);
         </div>
         <div class="col-lg-4">
             <div class="card">
-                <div class="data" style="color: #0c5460">150</div>
+                <div class="data" style="color: #0c5460"><?=number_format($count_c)?></div>
                 <div class="containerx">
                     <h4><b><i class="glyphicon glyphicon-user text-warning"></i> จำนวนผู้เช่า</b></h4>
 <!--                    <p>Architect & Engineer</p>-->
@@ -86,7 +86,7 @@ $this->registerCss($css);
         </div>
         <div class="col-lg-4">
             <div class="card">
-                <div class="data" style="color: #0c5460">16</div>
+                <div class="data" style="color: #0c5460"><?=number_format($count_empty)?></div>
                 <div class="containerx">
                     <h4><b><i class="glyphicon glyphicon-star-empty text-success"></i> จำนวนห้องว่าง</b></h4>
                     <!--                    <p>Architect & Engineer</p>-->
