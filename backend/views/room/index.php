@@ -85,7 +85,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'summary' => "แสดง {begin} - {end} ของทั้งหมด {totalCount} รายการ",
                     'showOnEmpty'=>false,
                     'tableOptions' => ['class' => 'table table-hover'],
-                    'emptyText' => '<div style="color: red;align: center;"> <b>ไม่พบรายการไดๆ</b></div>',
+                    'emptyText' => '<div style="color: red;align: center;"><br> <b>ไม่พบรายการไดๆ</b></div>',
                     'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

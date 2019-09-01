@@ -77,8 +77,8 @@ $url_to_print = Url::to(['customer/printhistory','id'=>$model->id],true);
                     <td><?=$model->card_id?></td>
                 </tr>
                 <tr>
-                    <td style="font-weight: bold">อาชีพ</td>
-                    <td></td>
+                    <td style="font-weight: bold">ห้องพักเลขที่</td>
+                    <td style="font-weight: bold"></td>
                 </tr>
                 <tr>
                     <td style="font-weight: bold">เข้าอยู่เมื่อ</td>
@@ -98,10 +98,10 @@ $url_to_print = Url::to(['customer/printhistory','id'=>$model->id],true);
         </div>
         <div class="col-lg-3">
             <table class="table">
-                <tr>
-                    <td style="font-weight: bold">แต้มสะสม</td>
-                    <td style="font-weight: bold"></td>
-                </tr>
+<!--                <tr>-->
+<!--                    <td style="font-weight: bold">ห้องพักเลขที่</td>-->
+<!--                    <td style="font-weight: bold"></td>-->
+<!--                </tr>-->
 
             </table>
         </div>

@@ -32,7 +32,8 @@ AppAsset::register($this);
         'brandLabel' => 'ประสิทธิ์ห้องเช่า',// Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse text-default navbar-fixed-top',
+            'class' => 'navbar navbar-default text-white navbar-fixed-top',
+            'style' =>'color: #FFFFFF'
         ],
     ]);
     $menuItems = [
