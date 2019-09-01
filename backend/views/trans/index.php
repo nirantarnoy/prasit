@@ -94,11 +94,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'trans_no',
             'trans_date',
            [
-  'attribute' => 'building_id',
-               'value' => function($data){
-                    return \backend\models\Building::findName($data->building_id);
-               }
-],
+              'attribute' => 'building_id',
+                           'value' => function($data){
+                                return \backend\models\Building::findName($data->building_id);
+                           }
+            ],
            // 'trans_type',
                         [
                             'attribute'=>'status',

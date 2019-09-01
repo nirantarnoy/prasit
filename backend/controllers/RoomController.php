@@ -16,6 +16,7 @@ use yii\helpers\Json;
  */
 class RoomController extends Controller
 {
+    public $enableCsrfValidation = false;
     /**
      * {@inheritdoc}
      */
@@ -98,6 +99,8 @@ class RoomController extends Controller
     {
         $model = $this->findModel($id);
 
+        $room_lease = \backend\models\Roomlease::find()->where(['room_id'=>$id,'status'=>1])->all();
+
         if ($model->load(Yii::$app->request->post())) {
             $uploadimage = UploadedFile::getInstance($model,'photo');
             if(!empty($uploadimage)){
@@ -111,6 +114,7 @@ class RoomController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'room_lease' => $room_lease,
         ]);
     }
 
@@ -177,4 +181,67 @@ class RoomController extends Controller
             }
         }
     }
+
+    public function actionReturnroom(){
+        if(Yii::$app->request->isAjax) {
+            $id = Yii::$app->request->post('id');
+            $room_id = Yii::$app->request->post('room_id');
+          // return $id;
+            if($id){
+                $model = \backend\models\Roomlease::find()->where(['id'=>$id])->one();
+                if($model){
+                    $model->status = 100 ; //แจ้งออก
+                    $model->leave_date = date('d-m-Y');
+                    if($model->save(false)){
+
+                        $modelupdate = \backend\models\Room::find()->where(['id'=>$model->room_id])->one();
+                        $modelupdate->room_status = 1;
+                        $modelupdate->save(false);
+                        $this->redirect(['room/update','id'=>$model->room_id]);
+                    }
+
+                }
+            }else{
+                $this->redirect(['room/update','id'=>$room_id]);
+            }
+        }
+    }
+
+    public function actionAddlease(){
+     //   echo "niran";return;
+        $lease_no = Yii::$app->request->post('lease_no');
+      //  echo $lease_no;return;
+        $id = Yii::$app->request->post('room_id');
+        $cust_id = Yii::$app->request->post('customer_id');
+        $sdate = Yii::$app->request->post('start_date');
+        $adv = Yii::$app->request->post('advance_amt');
+        $fee = Yii::$app->request->post('fee_amt');
+        $note = Yii::$app->request->post('note');
+
+       // echo strtotime($sdate);return;
+
+        $chk_old = \backend\models\Roomlease::find()->where(['room_id'=>$id,'status'=>1])->count();
+
+        if($id && $lease_no != "" && $chk_old == 0){
+            $model = new \backend\models\Roomlease();
+            $model->lease_no = $lease_no;
+            $model->customer_id = $cust_id;
+            $model->start_from = date('Y-m-d', strtotime($sdate));
+            $model->room_id = $id;
+            $model->advance_amt = $adv;
+            $model->insurance_amt = $fee;
+            $model->note = $note;
+            $model->status = 1;
+            if($model->save(false)){
+                $modelupdate = \backend\models\Room::find()->where(['id'=>$id])->one();
+                $modelupdate->room_status = 2;
+                $modelupdate->save(false);
+                $this->redirect(['room/update','id'=>$id]);
+            }
+        }else{
+            $this->redirect(['room/update','id'=>$id]);
+        }
+
+    }
+
 }

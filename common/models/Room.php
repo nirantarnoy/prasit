@@ -43,7 +43,7 @@ class Room extends \yii\db\ActiveRecord
     {
         return [
             [['building_id'],'required'],
-            [['building_id', 'floor', 'customer_id','room_status', 'rent_type', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['building_id', 'floor', 'customer_id','pay_status','room_status', 'rent_type', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['room_rate', 'water_meter_last', 'elect_meter_last', 'water_per_unit', 'elect_per_unit'], 'number'],
             [['last_pay_date','photo'], 'safe'],
             [['room_no'], 'string', 'max' => 255],
@@ -69,6 +69,7 @@ class Room extends \yii\db\ActiveRecord
             'elect_per_unit' => 'ไฟหน่วยละ',
             'last_pay_date' => 'ชำระล่าสุด',
             'photo' => 'รูป',
+            'pay_status' => 'ชำระเงิน',
             'room_status' => 'สถานะเช่า',
             'status' => 'สถานะ',
             'created_at' => 'Created At',

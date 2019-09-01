@@ -73,6 +73,9 @@ class CustomerSearch extends Customer
 
         if($this->globalSearch != ''){
             $query->orFilterWhere(['like','code',$this->globalSearch])
+                ->orFilterWhere(['like','card_id',$this->globalSearch])
+                ->orFilterWhere(['like','first_name',$this->globalSearch])
+                ->orFilterWhere(['like','last_name',$this->globalSearch])
                 ->orFilterWhere(['like','description',$this->globalSearch]);
         }
 

@@ -102,7 +102,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'customer_id',
                             'value' => function($data){
-                                return \backend\models\Customer::findName($data->customer_id);
+                                $room_cust = \backend\models\Roomlease::getCustomer($data->id);
+                                return \backend\models\Customer::findName($room_cust);
                             }
                         ],
             //'room_rate',
@@ -138,7 +139,20 @@ $this->params['breadcrumbs'][] = $this->title;
                             'contentOptions' => ['style' => 'vertical-align: middle'],
                             'format' => 'html',
                             'value'=>function($data){
-                                return $data->room_status === 1 ? '<div class="label label-danger">ไม่ว่าง</div>':'<div class="label label-success">ว่าง</div>';
+                                return $data->room_status === 1 ? '<div class="label label-success">ว่าง</div>':'<div class="label label-danger">ไม่ว่าง</div>';
+                            }
+                        ],
+                        [
+                            'attribute'=>'pay_status',
+                            'contentOptions' => ['style' => 'vertical-align: middle'],
+                            'format' => 'html',
+                            'value'=>function($data){
+                                if($data->pay_status == 1){
+                                    return '<div class="label label-success">'.\backend\helpers\PayStatus::getTypeById($data->pay_status);
+                                }else{
+                                    return '<div class="label label-default">'.\backend\helpers\PayStatus::getTypeById($data->pay_status);
+                                }
+
                             }
                         ],
 

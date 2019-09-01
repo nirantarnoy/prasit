@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Trans */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Trans', 'url' => ['index']];
+$this->title = $model->trans_no;
+$this->params['breadcrumbs'][] = ['label' => 'บันทึกค่าเช่า', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -29,15 +29,38 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+          //  'id',
             'trans_no',
             'trans_date',
-            'trans_type',
-            'status',
-            'created_at',
-            'updated_at',
-            'created_by',
-            'updated_by',
+            //'trans_type',
+            [
+                'attribute' => 'building_id',
+                'value' => function($data){
+                    return \backend\models\Building::findName($data->building_id);
+                }
+            ],
+            [
+                'attribute'=>'status',
+                'contentOptions' => ['style' => 'vertical-align: middle'],
+                'format' => 'html',
+                'value'=>function($data){
+                    if($data->status == 1){
+                        return '<div class="label label-success">'.\backend\helpers\TransStatus::getTypeById($data->status);
+                    }else{
+                        return '<div class="label label-default">'.\backend\helpers\TransStatus::getTypeById($data->status);
+                    }
+
+                }
+            ],
+            ['attribute'=>'created_at',
+              'value'=>function($data){
+                return date('d-m-Y',$data->created_at);
+             }
+            ],
+//            'created_at',
+//            'updated_at',
+//            'created_by',
+//            'updated_by',
         ],
     ]) ?>
 

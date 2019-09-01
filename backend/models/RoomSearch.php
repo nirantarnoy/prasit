@@ -18,7 +18,7 @@ class RoomSearch extends Room
     public function rules()
     {
         return [
-            [['id', 'building_id', 'floor', 'customer_id', 'rent_type', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['id', 'building_id', 'floor','room_status','pay_status', 'customer_id', 'rent_type', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['room_no', 'last_pay_date', 'photo'], 'safe'],
             [['room_rate', 'water_meter_last', 'elect_meter_last', 'water_per_unit', 'elect_per_unit'], 'number'],
             [['globalSearch'],'string'],
@@ -67,6 +67,8 @@ class RoomSearch extends Room
             'customer_id' => $this->customer_id,
             'room_rate' => $this->room_rate,
             'rent_type' => $this->rent_type,
+            'room_status' => $this->room_status,
+            'pay_status' => $this->pay_status,
             'water_meter_last' => $this->water_meter_last,
             'elect_meter_last' => $this->elect_meter_last,
             'water_per_unit' => $this->water_per_unit,

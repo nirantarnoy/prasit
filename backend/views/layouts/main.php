@@ -36,13 +36,13 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'ภาพรวม', 'url' => ['/site/index']],
         ['label' => 'ข้อมูลหอพัก', 'url' => ['/plant/index']],
         ['label' => 'ข้อมูลตึก', 'url' => ['/building/index']],
         ['label' => 'ข้อมูลห้อง', 'url' => ['/room/index']],
         ['label' => 'ข้อมูลลูกค้า', 'url' => ['/customer/index']],
         ['label' => 'บันทึกค่าเช่า', 'url' => ['/trans/index']],
-        ['label' => 'รายงาน', 'url' => ['/report/index']],
+       // ['label' => 'รายงาน', 'url' => ['/report/index']],
         ['label' => 'แจ้งเตือน', 'url' => ['/message/index']],
 
     ];
