@@ -29,14 +29,22 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => 'ประสิทธิ์ห้องเช่า',// Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-inverse text-default navbar-fixed-top',
         ],
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'ข้อมูลหอพัก', 'url' => ['/plant/index']],
+        ['label' => 'ข้อมูลตึก', 'url' => ['/building/index']],
+        ['label' => 'ข้อมูลห้อง', 'url' => ['/room/index']],
+        ['label' => 'ข้อมูลลูกค้า', 'url' => ['/customer/index']],
+        ['label' => 'บันทึกค่าเช่า', 'url' => ['/trans/index']],
+        ['label' => 'รายงาน', 'url' => ['/report/index']],
+        ['label' => 'แจ้งเตือน', 'url' => ['/message/index']],
+
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
@@ -68,9 +76,9 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
+        <p class="pull-left">&copy; <?= 'ประสิทธิ์ห้องเช่า'?> <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right"><?php //echo  Yii::powered() ?></p>
     </div>
 </footer>
 
