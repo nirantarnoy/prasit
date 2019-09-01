@@ -64,12 +64,14 @@ class SiteController extends Controller
         $count_r = \backend\models\Room::find()->count();
         $count_c = \backend\models\Customer::find()->count();
         $count_empty = \backend\models\Room::find()->where(['room_status'=>1])->count();
+        $count_notpay = \backend\models\Room::find()->where(['pay_status'=>2])->count();
         return $this->render('index',
             [
                 'count_b'=>$count_b,
                 'count_r'=>$count_r,
                 'count_c'=>$count_c,
-                'count_empty' => $count_empty
+                'count_empty' => $count_empty,
+                'count_notpay' => $count_notpay
             ]);
     }
 

@@ -69,7 +69,7 @@ $this->registerCss($css);
     <div class="row">
         <div class="col-lg-4">
             <div class="card">
-                <div class="data" style="color: #0c5460">6</div>
+                <div class="data" style="color: #0c5460"><?=number_format($count_notpay)?></div>
                 <div class="containerx">
                     <h4><b><i class="glyphicon glyphicon-comment text-danger"></i> ค้างชำระ(ห้อง)</b></h4>
                 </div>
