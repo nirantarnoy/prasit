@@ -273,7 +273,7 @@ $dist = District::find()->all();
                                    <div class="col-lg-12">
                                       <div class="form-group" style="margin-top: -10px">
 
-                                        <div class="control-label col-md-3 col-sm-3 col-xs-12 btn-addbank" style="cursor: pointer;"><i class="fa fa-plus"></i> เพิ่มบัญชี</div>
+<!--                                        <div class="control-label col-md-3 col-sm-3 col-xs-12 btn-addbank" style="cursor: pointer;"><i class="fa fa-plus"></i> เพิ่มบัญชี</div>-->
                                          <div class="col-md-6 col-sm-6 col-xs-12">
                                         </div>
                                       </div>

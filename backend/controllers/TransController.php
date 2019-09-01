@@ -138,6 +138,7 @@ class TransController extends Controller
 
         //  $id = Yii::$app->request->post("id");
         if($id){
+            //$modeltrans = \common\models\Trans::find()->where(['id'=>$id])->one();
             $modeltrans = \common\models\Trans::find()->where(['id'=>$id])->one();
             $modelline = \backend\models\Transline::find()->where(['trans_id'=>$id])->all();
             $pdf = new Pdf([
@@ -146,7 +147,7 @@ class TransController extends Controller
                 'format' => Pdf::FORMAT_A4,
                 'orientation' => Pdf::ORIENT_PORTRAIT,
                 'destination' => Pdf::DEST_BROWSER,
-                'content' => $this->renderPartial('_bill',
+                'content' => $this->renderPartial('_multibill',
                     [
                         'model'=>$modeltrans,
                         'modelline'=> $modelline,

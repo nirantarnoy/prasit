@@ -7,14 +7,16 @@ $this->registerJsFile( '@web/js/ThaiBath-master/thaibath.js',
 
 
 ?>
-
+<?php for($i=0;$i<=1;$i++):?>
 <table width="100%">
     <tr>
         <td width="100%" style="text-align: center"><h3>ประสิทธิ์ห้องเช่า</h3></td>
     </tr>
     <tr>
         <td width="100%" style="text-align: center"><h4>
-                169/343 หมู่บ้านพฤกษ์ลดาเพชรเกษม-สาย4 ตำบล แคราย อำเภอกระทุ่มแบน สมุทรสาคร</h4></td>
+<!--                169/343 หมู่บ้านพฤกษ์ลดาเพชรเกษม-สาย4 ตำบล แคราย อำเภอกระทุ่มแบน สมุทรสาคร-->
+                <?php echo \backend\models\AddressBook::findAddressPlant(1) ?>
+            </h4></td>
     </tr>
     <tr>
         <td width="100%" style="text-align: center"><h2>ใบเสร็จรับเงิน</h2></td>
@@ -82,6 +84,20 @@ $this->registerJsFile( '@web/js/ThaiBath-master/thaibath.js',
         <td style="border-right: 1px solid gray;font-size: 12px;text-align: center"><?=number_format(8)?></td>
         <td style="font-size: 12px;text-align: center"><?=number_format(160)?></td>
     </tr>
+    <tr>
+        <td style="border-right: 1px solid gray;font-size: 12px;text-align: center;padding: 5px 5px 5px 5px;"><?="4"?></td>
+        <td style="border-right: 1px solid gray;font-size: 12px;text-align: left;padding-left: 10px;"><?="ค่าจอดรถ"?></td>
+        <td style="border-right: 1px solid gray;font-size: 12px;text-align: center">300</td>
+        <td style="border-right: 1px solid gray;font-size: 12px;text-align: center"><?=number_format(1)?></td>
+        <td style="font-size: 12px;text-align: center"><?=number_format(300)?></td>
+    </tr>
+    <tr>
+        <td style="border-right: 1px solid gray;font-size: 12px;text-align: center;padding: 5px 5px 5px 5px;"><?="5"?></td>
+        <td style="border-right: 1px solid gray;font-size: 12px;text-align: left;padding-left: 10px;"><?="ค่าปรับล่าช้า"?></td>
+        <td style="border-right: 1px solid gray;font-size: 12px;text-align: center">100</td>
+        <td style="border-right: 1px solid gray;font-size: 12px;text-align: center"><?=number_format(1)?></td>
+        <td style="font-size: 12px;text-align: center"><?=number_format(100)?></td>
+    </tr>
     <?php if(count($modelline)>0):?>
 
         <?php foreach($modelline as $value):?>
@@ -108,35 +124,27 @@ $this->registerJsFile( '@web/js/ThaiBath-master/thaibath.js',
         <td></td>
         <td style="text-align: left;font-size: 12px">[  ] เงินสด</td>
         <td> </td>
-        <td colspan="2"></td>
+        <td colspan="2">
+            ..........................................ผู้รับเงิน
+        </td>
     </tr>
     <tr>
         <td></td>
         <td style="text-align: left;font-size: 12px">[  ] โอนเงิน</td>
         <td></td>
-        <td colspan="2"></td>
-    </tr>
-    <tr>
-
-        <td></td>
-        <td></td>
-        <td colspan="3" style="text-align: center;font-size: 12px">
-            ..........................................ผู้รับเงิน
-        </td>
-    </tr>
-    <tr>
-
-        <td></td>
-        <td></td>
-        <td colspan="3" style="text-align: center;font-size: 12px;padding: 15px 15px 15px 15px;">
+        <td colspan="2">
             ............/........../...............
         </td>
+    </tr>
+    <tr>
+        <td style="color: #FFFFFF">sss</td>
     </tr>
     </tbody>
 
 
 </table>
-
+    <br><br>
+<?php endfor;?>
 
 <?php
 $js =<<<JS
