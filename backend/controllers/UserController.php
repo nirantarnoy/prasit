@@ -72,7 +72,11 @@ class UserController extends Controller
      * @return mixed
      */
 
-
+    public function beforeAction()
+    {
+        if (Yii::$app->user->isGuest)
+            $this->redirect(['site/login']);
+    }
     public function actionIndex()
     {
         $pageSize = \Yii::$app->request->post("perpage");

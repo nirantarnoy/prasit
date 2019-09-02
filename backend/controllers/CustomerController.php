@@ -37,6 +37,11 @@ class CustomerController extends Controller
      * Lists all Customer models.
      * @return mixed
      */
+    public function beforeAction()
+    {
+        if (Yii::$app->user->isGuest)
+            $this->redirect(['site/login']);
+    }
     public function actionIndex()
     {
 

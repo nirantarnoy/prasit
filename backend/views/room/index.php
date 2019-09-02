@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\helpers\Url;
+use lavrentiev\widgets\toastr\Notification;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\RoomSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */

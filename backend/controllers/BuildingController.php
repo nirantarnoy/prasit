@@ -35,8 +35,15 @@ class BuildingController extends Controller
      * Lists all Building models.
      * @return mixed
      */
+    public function beforeAction()
+    {
+        if (Yii::$app->user->isGuest)
+            $this->redirect(['site/login']);
+    }
+
     public function actionIndex()
     {
+
         $pageSize = \Yii::$app->request->post("perpage");
         $searchModel = new BuildingSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);

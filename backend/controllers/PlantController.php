@@ -76,7 +76,11 @@ class PlantController extends Controller
      * Lists all Plant models.
      * @return mixed
      */
-
+    public function beforeAction()
+    {
+        if (Yii::$app->user->isGuest)
+            $this->redirect(['site/login']);
+    }
     public function actionIndex()
     {
         $modelx = Plant::find()->one();
