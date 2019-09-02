@@ -282,7 +282,8 @@ class TransController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
+        $session = Yii::$app->session;
+        $session->setFlash('msg','ลบรายการเรียบร้อย');
         return $this->redirect(['index']);
     }
 
