@@ -77,7 +77,7 @@ $this->registerCss($css);
         </div>
         <div class="col-lg-4">
             <div class="card">
-                <div class="data" style="color: #0c5460">15,000</div>
+                <div class="data" style="color: #0c5460"><?=number_format($count_notpay_amt)?></div>
                 <div class="containerx">
                     <h4><b><i class="glyphicon glyphicon-usd text-success"></i> ค้างชำระ(จำนวนเงิน)</b></h4>
                     <!--                    <p>Architect & Engineer</p>-->

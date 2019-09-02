@@ -50,5 +50,14 @@ class Building extends \common\models\Building
         $model = Building::find()->where(['id'=>$id])->one();
         return count($model)>0?$model->name:'';
     }
+    public function findInfo($room_id){
+        $modelroom = \backend\models\Room::find()->where(['id'=>$room_id])->one();
+        if($modelroom){
+            $model = Building::find()->where(['id'=>$modelroom->building_id])->one();
+            return count($model)>0?$model:null;
+        }else{
+            return null;
+        }
 
+    }
 }

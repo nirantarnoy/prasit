@@ -67,6 +67,12 @@ $customer = [];
 
             ]) ?>
         </div>
+        <div class="col-lg-3">
+            <?= $form->field($model, 'pay_status')->widget(Select2::className(),[
+                'data'=> ArrayHelper::map(\backend\helpers\PayStatus::asArrayObject(),'id','name'),
+
+            ]) ?>
+        </div>
     </div>
 
     <div class="row">

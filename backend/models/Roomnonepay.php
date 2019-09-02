@@ -4,7 +4,7 @@ use Yii;
 use yii\db\ActiveRecord;
 date_default_timezone_set('Asia/Bangkok');
 
-class Room extends \common\models\Room
+class Roomnonepay extends \common\models\TransNonePay
 {
     public function behaviors()
     {
@@ -46,19 +46,10 @@ class Room extends \common\models\Room
             ],
         ];
     }
-    public function findInfo($id){
-        $model = Room::find()->where(['id'=>$id])->one();
-        return count($model)>0?$model:null;
-    }
-    public function findCustInfo($id){
-        $model = Roomlease::find()->where(['room_id'=>$id])->one();
-        if($model){
-            $cust = \backend\models\Customer::find()->where(['id'=>$model->customer_id])->one();
-            return count($cust)>0?$cust:null;
-        }else{
-            return null;
-        }
 
+    public function findNonepay($id){
+        $model = Roomnonepay::find()->where(['room_id'=>$id])->one();
+        return count($model)>0?$model->total_amt:0;
     }
 
 }

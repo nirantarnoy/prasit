@@ -67,4 +67,9 @@ class Trans extends \common\models\Trans
         }
     }
 
+    public function findInfo($id){
+        $model = Trans::find()->where(['id'=>$id])->one();
+        return count($model)>0?$model:null;
+    }
+
 }

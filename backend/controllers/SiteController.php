@@ -65,13 +65,15 @@ class SiteController extends Controller
         $count_c = \backend\models\Customer::find()->count();
         $count_empty = \backend\models\Room::find()->where(['room_status'=>1])->count();
         $count_notpay = \backend\models\Room::find()->where(['pay_status'=>2])->count();
+        $count_notpay_amt = \backend\models\Roomnonepay::find()->where(['status'=>1])->sum('total_amt');
         return $this->render('index',
             [
                 'count_b'=>$count_b,
                 'count_r'=>$count_r,
                 'count_c'=>$count_c,
                 'count_empty' => $count_empty,
-                'count_notpay' => $count_notpay
+                'count_notpay' => $count_notpay,
+                'count_notpay_amt' => $count_notpay_amt
             ]);
     }
 

@@ -106,9 +106,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             'format' => 'html',
                             'value'=>function($data){
                                 if($data->status == 1){
-                                    return '<div class="label label-success">'.\backend\helpers\TransStatus::getTypeById($data->status);
-                                }else{
                                     return '<div class="label label-default">'.\backend\helpers\TransStatus::getTypeById($data->status);
+                                }else{
+                                    return '<div class="label label-success">'.\backend\helpers\TransStatus::getTypeById($data->status);
                                 }
 
                             }
@@ -137,7 +137,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'data-pjax' => '0',
                                         'id'=>'modaledit',
                                     ]);
-                                    return $data->status == 1? Html::a(
+                                    return Html::a(
                                         '<span class="glyphicon glyphicon-pencil btn btn-xs btn-default"></span>', $url, [
                                         'id' => 'activity-view-link',
                                         //'data-toggle' => 'modal',
@@ -145,7 +145,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'data-id' => $index,
                                         'data-pjax' => '0',
                                         // 'style'=>['float'=>'rigth'],
-                                    ]):'';
+                                    ]);
                                 },
                                 'delete' => function($url, $data, $index) {
                                     $options = array_merge([
