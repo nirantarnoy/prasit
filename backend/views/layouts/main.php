@@ -50,17 +50,22 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
+        $menuItems[] = ['label'=>'<span class="glyphicon glyphicon-user"></span>'.' '.Yii::$app->user->identity->username,'items'=>[
+              ['label'=>'<span class="glyphicon glyphicon-chevron-right text-success"></span>'.' '.'เปลียนรหัสผ่าน','url'=>['site/changepassword']],
+              ['label'=>'<span class="glyphicon glyphicon-log-out text-warning"></span>'.' '.'ออกจากระบบ','url'=>['site/logout'],'linkOptions' => ['data-method' => 'post']
+        ]]];
+//        $menuItems[] = '<li>'
+//            . Html::beginForm(['/site/logout'], 'post')
+//            . Html::submitButton(
+//                'Logout (' . Yii::$app->user->identity->username . ')',
+//                ['class' => 'btn btn-link logout']
+//            )
+//            . Html::endForm()
+//            . '</li>';
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
+        'encodeLabels' => false,
         'items' => $menuItems,
     ]);
     NavBar::end();

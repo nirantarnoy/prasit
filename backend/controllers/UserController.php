@@ -40,29 +40,29 @@ class UserController extends Controller
 //
 //                ]
 //            ]
-            'access'=>[
-                'class'=>AccessControl::className(),
-                'denyCallback' => function ($rule, $action) {
-                    throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
-                },
-                'rules'=>[
+//            'access'=>[
+//                'class'=>AccessControl::className(),
+//                'denyCallback' => function ($rule, $action) {
+//                    throw new ForbiddenHttpException('คุณไม่ได้รับอนุญาติให้เข้าใช้งาน!');
+//                },
+//                'rules'=>[
+////                    [
+////                        'allow'=>true,
+////                        'actions'=>['index','create','update','delete','view'],
+////                        'roles'=>['@'],
+////                    ]
 //                    [
 //                        'allow'=>true,
-//                        'actions'=>['index','create','update','delete','view'],
 //                        'roles'=>['@'],
+//                        'matchCallback'=>function($rule,$action){
+//                            $currentRoute = Yii::$app->controller->getRoute();
+//                            if(Yii::$app->user->can($currentRoute)){
+//                                return true;
+//                            }
+//                        }
 //                    ]
-                    [
-                        'allow'=>true,
-                        'roles'=>['@'],
-                        'matchCallback'=>function($rule,$action){
-                            $currentRoute = Yii::$app->controller->getRoute();
-                            if(Yii::$app->user->can($currentRoute)){
-                                return true;
-                            }
-                        }
-                    ]
-                ]
-            ]
+//                ]
+//            ]
 
         ];
     }
@@ -72,7 +72,7 @@ class UserController extends Controller
      * @return mixed
      */
 
-    public function beforeAction()
+    public function init()
     {
         if (Yii::$app->user->isGuest)
             $this->redirect(['site/login']);

@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <div class="panel panel-headline">
+    <div class="panel panel-headline" style="background-color: #f1f1f1">
         <div class="panel-heading">
             <div class="btn-group">
                 <?= Html::a(Yii::t('app', '<i class="glyphicon glyphicon-plus"></i> สร้างข้อมูลตึก'), ['create'], ['class' => 'btn btn-success']) ?>

@@ -32,7 +32,7 @@ $url_to_print = Url::to(['customer/printhistory','id'=>$model->id],true);
             ],
         ]) ?>
     </p>
-<div class="panel">
+<div class="panel" style="background-color: #f1f1f1">
     <div class="panel-heading">
         <h3> <i class="fa fa-edit"></i> รายละเอียดลูกค้า</h3>
     </div>

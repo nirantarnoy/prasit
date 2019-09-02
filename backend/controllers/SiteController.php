@@ -26,7 +26,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index','changepassword'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -35,7 +35,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post','get'],
                 ],
             ],
         ];
@@ -110,5 +110,25 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionChangepassword(){
+        $model=new \backend\models\Resetform();
+        if($model->load(Yii::$app->request->post())){
+
+            $model_user = \backend\models\User::find()->where(['id'=>Yii::$app->user->id])->one();
+            if($model_user->validatePassword($model->oldpw)){
+                $model_user->setPassword($model->confirmpw);
+                $model_user->save();
+                return $this->redirect(['site/logout']);
+            }else{
+                $session = Yii::$app->session;
+                $session->setFlash('msg_err','รหัสผ่านเดิมไม่ถูกต้อง');
+            }
+
+        }
+        return $this->render('_setpassword',[
+            'model'=>$model
+        ]);
     }
 }

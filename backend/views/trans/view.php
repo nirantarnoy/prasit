@@ -46,9 +46,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html',
                 'value'=>function($data){
                     if($data->status == 1){
-                        return '<div class="label label-success">'.\backend\helpers\TransStatus::getTypeById($data->status);
-                    }else{
                         return '<div class="label label-default">'.\backend\helpers\TransStatus::getTypeById($data->status);
+                    }else{
+                        return '<div class="label label-success">'.\backend\helpers\TransStatus::getTypeById($data->status);
                     }
 
                 }
@@ -70,9 +70,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <form id="form-slip" action="index.php?r=trans/printslip" target="_blank" method="post">
             <input type="hidden" class="row_selected" value="" name="row_selected">
             <input type="hidden" class="cur_trans_id" value="<?=$model->id?>" name="cur_trans_id">
+
             <input type="submit" class="btn btn-default" value="พิมพ์ใบแจ้งค่าเช่า">
+            <?php if($model->status != 3):?>
             <div class="btn btn-warning btn-none-pay">บันทึกค้างชำระ</div>
             <div class="btn btn-success btn-complete">บันทึกชำระเงิน</div>
+            <?php endif;?>
             <!--            <input type="submit" class="btn btn-warning" value="บันทึกค้างชำระ">-->
         </form>
 

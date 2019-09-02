@@ -14,7 +14,7 @@ $dist = \common\models\District::find()->all();
 
 ?>
 
-<div class="panel panel-headline">
+<div class="panel" style="background-color: #f1f1f1">
     <div class="panel-heading">
         <div class="x_title">
             <h3><i class="fa fa-user-circle-o"></i> <?=$this->title?> <small></small></h3>
@@ -98,18 +98,16 @@ $dist = \common\models\District::find()->all();
                         <div class="col-lg-4">
                             <?= $form->field($model, 'phone')->textInput(['maxlength' => true,'class'=>'form-control'])->label() ?>
                         </div>
-
+                        <div class="col-lg-3">
+                            <?php echo $form->field($model, 'status')->widget(Switchery::className(),['options'=>['label'=>'','class'=>'form-control']])->label() ?>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-9">
                             <?= $form->field($model, 'description')->textarea(['maxlength' => true,'class'=>'form-control'])->label() ?>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <?php echo $form->field($model, 'status')->widget(Switchery::className(),['options'=>['label'=>'','class'=>'form-control']])->label() ?>
-                        </div>
-                    </div>
+
 
                 </div>
             </div>
