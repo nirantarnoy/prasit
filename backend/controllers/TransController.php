@@ -34,7 +34,7 @@ class TransController extends Controller
      * Lists all Trans models.
      * @return mixed
      */
-    public function beforeAction()
+    public function init()
     {
         if (Yii::$app->user->isGuest)
             $this->redirect(['site/login']);

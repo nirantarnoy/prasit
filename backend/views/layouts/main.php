@@ -44,7 +44,7 @@ AppAsset::register($this);
         ['label' => 'ข้อมูลลูกค้า', 'url' => ['/customer/index']],
         ['label' => 'บันทึกค่าเช่า', 'url' => ['/trans/index']],
        // ['label' => 'รายงาน', 'url' => ['/report/index']],
-        ['label' => 'แจ้งเตือน', 'url' => ['/message/index']],
+        //['label' => 'แจ้งเตือน', 'url' => ['/message/index']],
 
     ];
     if (Yii::$app->user->isGuest) {

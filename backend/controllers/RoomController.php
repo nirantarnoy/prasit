@@ -36,7 +36,7 @@ class RoomController extends Controller
      * Lists all Room models.
      * @return mixed
      */
-    public function beforeAction()
+    public function init()
     {
         if (Yii::$app->user->isGuest)
             $this->redirect(['site/login']);

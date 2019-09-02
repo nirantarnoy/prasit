@@ -35,7 +35,7 @@ class BuildingController extends Controller
      * Lists all Building models.
      * @return mixed
      */
-    public function beforeAction()
+    public function init()
     {
         if (Yii::$app->user->isGuest)
             $this->redirect(['site/login']);
