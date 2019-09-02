@@ -46,7 +46,7 @@ if ($session->getFlash('msg')): ?>
 <?php Pjax::begin(); ?>
 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-<div class="panel panel-headline" style="background-color: #f1f1f1">
+<div class="panel panel-headline">
     <div class="panel-heading">
         <div class="btn-group">
             <?= Html::a(Yii::t('app', '<i class="glyphicon glyphicon-plus"></i> สร้างรหัสลูกค้า'), ['create'], ['class' => 'btn btn-success']) ?>

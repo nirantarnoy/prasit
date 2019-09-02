@@ -14,7 +14,7 @@ $dist = \common\models\District::find()->all();
 
 ?>
 
-<div class="panel" style="background-color: #f1f1f1">
+<div class="panel">
     <div class="panel-heading">
         <div class="x_title">
             <h3><i class="fa fa-user-circle-o"></i> <?=$this->title?> <small></small></h3>

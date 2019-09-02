@@ -52,7 +52,7 @@ use yii\helpers\Html;
         <td style="padding: 10px;border-bottom: 1px solid gray;" colspan="3">
             <h3>เลขที่ : <?=$billinfo->trans_no.'-'.$roominfo->room_no?></h3><br>
             <h3>วันที่ : <?=date('d/m/Y', strtotime($billinfo->trans_date))?></h3><br>
-            <h3>ห้อง : <?=$roominfo->room_no?> </h3><br>
+            <h3>ห้อง : <?=\backend\models\Room::findInfo($value->room_id)->room_no?> </h3><br>
         </td>
     </tr>
     </thead>

@@ -149,9 +149,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             'format' => 'html',
                             'value'=>function($data){
                                 if($data->pay_status == 1){
-                                    return '<div class="label label-success">'.\backend\helpers\PayStatus::getTypeById($data->pay_status);
-                                }else{
-                                    return '<div class="label label-default">'.\backend\helpers\PayStatus::getTypeById($data->pay_status);
+                                    return '<div class="label label-success">'.\backend\helpers\PayStatus::getTypeById($data->pay_status).'</div>';
+                                }elseif($data->pay_status == 2){
+                                    return '<a href="#" class="label label-warning">'.\backend\helpers\PayStatus::getTypeById($data->pay_status).'</a>';
                                 }
 
                             }

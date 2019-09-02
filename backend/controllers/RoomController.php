@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 use yii\helpers\Json;
+use kartik\mpdf\Pdf;
 
 /**
  * RoomController implements the CRUD actions for Room model.
@@ -63,8 +64,10 @@ class RoomController extends Controller
      */
     public function actionView($id)
     {
+        $modelline = \backend\models\Transline::find()->where(['room_id'=>$id,'status'=>3])->all();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'modelline' => $modelline
         ]);
     }
 
@@ -113,9 +116,9 @@ class RoomController extends Controller
                 $model->photo = $uploadimage;
             }
             if($model->save()){
-                if($model->pay_status == 1){
-                    \backend\models\Roomnonepay::deleteAll(['room_id'=>$model->id]);
-                }
+//                if($model->pay_status == 1){
+//                    \backend\models\Roomnonepay::deleteAll(['room_id'=>$model->id]);
+//                }
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
@@ -252,5 +255,69 @@ class RoomController extends Controller
         }
 
     }
+    public function actionPrintslip(){
 
+        $id = Yii::$app->request->post("row_id");
+        if($id){
+            // return $list;
+            //$ids = explode(',',$list);
+            //$modeltrans = \common\models\Trans::find()->where(['id'=>$id])->one();
+            //  $modeltrans = \common\models\Trans::find()->where(['id'=>$id])->one();
+            $plant_mobile = \backend\models\Plant::find(['mobile'])->one();
+            $modelline = \backend\models\Transline::find()->where(['id'=>$id])->all();
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8, // leaner size using standard fonts
+                //  'format' => [150,236], //manaul
+                'format' => Pdf::FORMAT_A4,
+                'orientation' => Pdf::ORIENT_PORTRAIT,
+                'destination' => Pdf::DEST_BROWSER,
+                'content' => $this->renderPartial('_multibill',
+                    [
+                        //      'model'=>$modeltrans,
+                        'modelline'=> $modelline,
+                        'plant_mobile' => $plant_mobile,
+                    ]),
+                //'content' => "nira",
+                'cssFile' => '@backend/web/css/pdf.css',
+                //'jsFile'=>'@backend/web/js',
+                'defaultFont' => 'Cloud-Light',
+                'options' => [
+                    'title' => 'หนังสือยินยอม',
+                    'subject' => ''
+                ],
+                'methods' => [
+                    //  'SetHeader' => ['รายงานรหัสสินค้า||Generated On: ' . date("r")],
+                    //  'SetFooter' => ['|Page {PAGENO}|'],
+                    //'SetFooter'=>'niran',
+                ],
+
+            ]);
+            return $pdf->render();
+        }
+
+    }
+
+    public function actionMakepay(){
+        $id = Yii::$app->request->post("row_id");
+        if($id){
+            $transline = \backend\models\Transline::find()->where(['id'=>$id])->one();
+            if($transline){
+                $transline->status = 2;
+                if($transline->save(false)){
+                    \backend\models\Roomnonepay::deleteAll(['room_id'=>$id,'trans_line_id'=>$transline->id]);
+                    $paystatus = \backend\models\Roomnonepay::find()->where(['room_id'=>$id])->count();
+                    if($paystatus>0){
+                        $modelroom = \backend\models\Room::find()->where(['room_id'=>$id])->one();
+                        $modelroom->pay_status = 2;
+                        $modelroom->save(false);
+                    }else{
+                        $modelroom = \backend\models\Room::find()->where(['room_id'=>$id])->one();
+                        $modelroom->pay_status = 1;
+                        $modelroom->save(false);
+                    }
+                }
+                $this->redirect(['room/index']);
+            }
+        }
+    }
 }
