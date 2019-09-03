@@ -298,23 +298,26 @@ class RoomController extends Controller
     }
 
     public function actionMakepay(){
-        $id = Yii::$app->request->post("row_id");
+        $id = Yii::$app->request->post("pay_id");
+        $room_id = 0;
         if($id){
             $transline = \backend\models\Transline::find()->where(['id'=>$id])->one();
             if($transline){
+                $room_id = $transline->room_id;
                 $transline->status = 2;
                 if($transline->save(false)){
-                    \backend\models\Roomnonepay::deleteAll(['room_id'=>$id,'trans_line_id'=>$transline->id]);
-                    $paystatus = \backend\models\Roomnonepay::find()->where(['room_id'=>$id])->count();
-                    if($paystatus>0){
-                        $modelroom = \backend\models\Room::find()->where(['room_id'=>$id])->one();
+                    \backend\models\Roomnonepay::deleteAll(['room_id'=>$room_id,'trans_line_id'=>$id]);
+                    $paystatus = \backend\models\Roomnonepay::find()->where(['room_id'=>$room_id])->one();
+                    if($paystatus){
+                        $modelroom = \backend\models\Room::find()->where(['id'=>$room_id])->one();
                         $modelroom->pay_status = 2;
                         $modelroom->save(false);
                     }else{
-                        $modelroom = \backend\models\Room::find()->where(['room_id'=>$id])->one();
-                        $modelroom->pay_status = 1;
-                        $modelroom->save(false);
+                        $modelroomx = \backend\models\Room::find()->where(['id'=>$room_id])->one();
+                        $modelroomx->pay_status = 1;
+                        $modelroomx->save(false);
                     }
+
                 }
                 $this->redirect(['room/index']);
             }

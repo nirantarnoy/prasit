@@ -434,7 +434,7 @@ class TransController extends Controller
                            $transline->status = 3;
                            $transline->save(false);
 
-                           $this->redirect(['trans/update','id'=>$cur_trans_id]);
+                           $this->redirect(['trans/view','id'=>$cur_trans_id]);
                        }
                     }
 
