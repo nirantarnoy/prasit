@@ -117,7 +117,7 @@ class UserController extends Controller
             //$model->email = $model->username.'@octopus.com';
             $model->generateAuthKey();
             if($model->save()){
-                $model->assignment();
+               // $model->assignment();
                 $session = Yii::$app->session;
                 $session->setFlash('msg','บันทึกรายการเรียบร้อย');
                 return $this->redirect(['index']);

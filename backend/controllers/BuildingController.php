@@ -85,7 +85,9 @@ class BuildingController extends Controller
                 $model->photo = $uploadimage;
             }
             if($model->save()){
-                return $this->redirect(['view', 'id' => $model->id]);
+                $session = Yii::$app->session;
+                $session->setFlash('msg','บันทึกรายการเรียบร้อย');
+                return $this->redirect(['building/index']);
             }
         }
 
@@ -112,7 +114,9 @@ class BuildingController extends Controller
                 $model->photo = $uploadimage;
             }
             if($model->save()){
-                return $this->redirect(['view', 'id' => $model->id]);
+                $session = Yii::$app->session;
+                $session->setFlash('msg','บันทึกรายการเรียบร้อย');
+                return $this->redirect(['trans/index']);
             }
         }
 

@@ -21,7 +21,13 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+
     <?php $this->head() ?>
+    <style>
+        .my-breadcrumb{
+            background-color: #FFFFFF;
+        }
+    </style>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -74,6 +80,8 @@ AppAsset::register($this);
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            //'options' => ['class'=>'my-breadcrumb'],
+
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>

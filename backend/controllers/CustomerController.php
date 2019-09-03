@@ -65,9 +65,15 @@ class CustomerController extends Controller
      */
     public function actionView($id)
     {
-
+        $room_id = 0;
+        $modelroom = \backend\models\Roomlease::find()->where(['customer_id'=>$id,'status'=>1])->one();
+        if($modelroom){
+            $room_id = $modelroom->room_id;
+        }
+        $modelline = \backend\models\Transline::find()->where(['room_id'=>$room_id,'status'=>2])->all();
         return $this->render('view', [
-            'model' => $this->findModel($id)
+            'model' => $this->findModel($id),
+            'modelline' => $modelline,
         ]);
     }
 

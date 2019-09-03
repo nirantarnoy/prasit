@@ -13,52 +13,138 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="room-view">
+     <div class="row">
+         <div class="col-lg-6">
+             <h1>ห้องเช่าเลขที่ <?= Html::encode($this->title) ?></h1>
+         </div>
+         <div class="col-lg-6" style="text-align: right">
+             <p>
+                 <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                 <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+                     'class' => 'btn btn-danger',
+                     'data' => [
+                         'confirm' => 'Are you sure you want to delete this item?',
+                         'method' => 'post',
+                     ],
+                 ]) ?>
+             </p>
+         </div>
+     </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-         //   'id',
-            'room_no',
-            [
-                'attribute' => 'building_id',
-                'value' => function($data){
-                    return \backend\models\Building::findName($data->building_id);
-                }
-            ],
-            'floor',
-          //  'customer_id',
-            'room_rate',
-            'rent_type',
-            'water_meter_last',
-            'elect_meter_last',
-            'water_per_unit',
-            'elect_per_unit',
-            'last_pay_date',
-            'photo',
-//            'status',
-//            'created_at',
-//            'updated_at',
-//            'created_by',
-//            'updated_by',
-        ],
-    ]) ?>
+
+    <?php //echo DetailView::widget([
+//        'model' => $model,
+//        'attributes' => [
+//         //   'id',
+//            'room_no',
+//            [
+//                'attribute' => 'building_id',
+//                'value' => function($data){
+//                    return \backend\models\Building::findName($data->building_id);
+//                }
+//            ],
+//            'floor',
+//          //  'customer_id',
+//            'room_rate',
+//            'rent_type',
+//            'water_meter_last',
+//            'elect_meter_last',
+//            'water_per_unit',
+//            'elect_per_unit',
+//            'last_pay_date',
+//            'photo',
+////            'status',
+////            'created_at',
+////            'updated_at',
+////            'created_by',
+////            'updated_by',
+//        ],
+//    ]) ?>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="photo-container" style="text-align: center">
+
+                <?php if($model->photo !=''):?>
+                    <?php echo Html::img('@web/uploads/photo/'.$model->photo,['class'=>'img-profile','style'=>'width: 100%;position:relative']);?>
+                <?php else:?>
+                    <div><i class="fa fa-image"></i></div>
+                <?php endif;?>
+                <!--                <div id="kv_load" style="display:noxne" ></div>-->
+                <!--                <div style="background:url('images/markondiagram.PNG') no-repeat ; width:700px; height:759;border:2px solid #999;"  id="kv_mark">   </div>-->
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <table class="table">
+                <tr>
+                    <td style="font-weight: bold">เลขห้อง</td>
+                    <td><?=$model->room_no?></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">ตึก</td>
+                    <td><?=\backend\models\Building::findInfo($model->building_id)->name?></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">อยู่ชั้นที่</td>
+                    <td><?=$model->floor?></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">ค่าเช่า</td>
+                    <td><?=number_format($model->room_rate)?></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">ค่าน้ำต่อหน่วย</td>
+                    <td><?=number_format($model->water_per_unit)?></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">ค่าไฟฟ้าต่อหน่ว่ย</td>
+                    <td><?=number_format($model->elect_per_unit)?></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-3">
+            <table class="table">
+                <tr>
+                    <td style="font-weight: bold">มิเตอร์น้ำ</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">มิเตอร์ไฟฟ้า</td>
+                    <td style="font-weight: bold"></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">ชำระล่าสุด</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">สถานะ</td>
+                    <td>
+                        <?php if($model->status == 1): ?>
+                            <div class="label label-success">Active</div>
+                        <?php else:?>
+                            <div class="label label-danger">Not Active</div>
+                        <?php endif;?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-3">
+            <table class="table">
+                <!--                <tr>-->
+                <!--                    <td style="font-weight: bold">ห้องพักเลขที่</td>-->
+                <!--                    <td style="font-weight: bold"></td>-->
+                <!--                </tr>-->
+
+            </table>
+        </div>
+    </div>
+
     <h4>รายการค้างชำระ</h4>
     <div class="row">
         <div class="col-lg-12">
-            <table class="table table-bordered table-list">
+            <table class="table table-bordered table-striped table-list">
                 <thead>
                 <tr >
                     <th style="text-align: center">#</th>

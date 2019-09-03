@@ -45,14 +45,14 @@ use yii\helpers\Html;
     <thead>
     <tr>
         <td style="padding: 10px;border-bottom: 1px solid gray;border-right: 1px solid gray" colspan="2">
-            <h3>ชื่อ : <?=$custinfo->first_name.' '.$custinfo->last_name?></h3><br>
-            <h3>ที่อยู่ : <?=\backend\models\Customer::findAddress($custinfo->id)?></h3><br>
-            <h3>โทร : <?=\backend\models\Customer::findPhone($custinfo->id)?></h3><br>
+            <h5>ชื่อ : <?=$custinfo->first_name.' '.$custinfo->last_name?></h5><br>
+            <h5>ที่อยู่ : <?=\backend\models\Customer::findAddress($custinfo->id)?></h5><br>
+            <h5>โทร : <?=\backend\models\Customer::findPhone($custinfo->id)?></h5><br>
         </td>
         <td style="padding: 10px;border-bottom: 1px solid gray;" colspan="3">
-            <h3>เลขที่ : <?=$billinfo->trans_no.'-'.$roominfo->room_no?></h3><br>
-            <h3>วันที่ : <?=date('d/m/Y', strtotime($billinfo->trans_date))?></h3><br>
-            <h3>ห้อง : <?=$roominfo->room_no?> </h3><br>
+            <h4>เลขที่ : <?=$billinfo->trans_no.'-'.$roominfo->room_no?></h4><br>
+            <h4>วันที่ : <?=date('d/m/Y', strtotime($billinfo->trans_date))?></h4><br>
+            <h4>ห้อง : <?=$roominfo->room_no?> </h4><br>
         </td>
     </tr>
     </thead>

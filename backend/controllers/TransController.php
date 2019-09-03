@@ -154,7 +154,9 @@ class TransController extends Controller
 
                     }
                 }
-                return $this->redirect(['view', 'id' => $model->id]);
+                $session = Yii::$app->session;
+                $session->setFlash('msg','บันทึกรายการเรียบร้อย');
+                return $this->redirect(['trans/index']);
             }
         }
 
@@ -267,7 +269,9 @@ class TransController extends Controller
 
                     }
                 }
-                return $this->redirect(['view', 'id' => $model->id]);
+                $session = Yii::$app->session;
+                $session->setFlash('msg','บันทึกรายการเรียบร้อย');
+                return $this->redirect(['trans/index']);
             }
         }
 

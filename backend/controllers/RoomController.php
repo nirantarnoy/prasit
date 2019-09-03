@@ -87,7 +87,9 @@ class RoomController extends Controller
                 $model->photo = $uploadimage;
             }
             if($model->save()){
-                return $this->redirect(['view', 'id' => $model->id]);
+                $session = Yii::$app->session;
+                $session->setFlash('msg','บันทึกรายการเรียบร้อย');
+                return $this->redirect(['room/index']);
             }
         }
 
@@ -119,7 +121,9 @@ class RoomController extends Controller
 //                if($model->pay_status == 1){
 //                    \backend\models\Roomnonepay::deleteAll(['room_id'=>$model->id]);
 //                }
-                return $this->redirect(['view', 'id' => $model->id]);
+                $session = Yii::$app->session;
+                $session->setFlash('msg','บันทึกรายการเรียบร้อย');
+                return $this->redirect(['trans/index']);
             }
         }
 

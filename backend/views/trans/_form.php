@@ -245,7 +245,7 @@ function checkSelect(event) {
   }
     //cal_line(event);
     var txt = ArabicNumberToText(total_all);
-    e.closest('tr').find('.money_text').val(txt);
+    event.closest('tr').find('.money_text').val(txt);
 }
 function checkSelect2(event) {
      var total_all = 0;
@@ -267,8 +267,9 @@ function checkSelect2(event) {
        event.closest("tr").find(".row_amt").text(parseFloat(parseFloat(line_total)-parseFloat(fine_rate)).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ","));
        total_all = parseFloat(parseFloat(line_total)-parseFloat(fine_rate)).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");    
   }
+
    var txt = ArabicNumberToText(total_all);
-    $(".money-text").text(txt);
+    event.closest('tr').find('.money_text').val(txt);
 }
 
 function getRoomByBuilding(e) {
