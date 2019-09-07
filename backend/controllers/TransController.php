@@ -456,7 +456,9 @@ class TransController extends Controller
                     $transline = \backend\models\Transline::find()->where(['id'=>$ids[$i]])->one();
                     if($transline){
                        $transline->status = 2;
-                       $transline->save(false);
+                       if($transline->save(false)){
+                           $this->updateFacility($transline->room_id,$transline->water_after,$transline->elect_after,$transline->updated_at);
+                       }
                     }
                 }
                 $modeltrans = \backend\models\Trans::find()->where(['id'=>$cur_trans_id])->one();
@@ -468,6 +470,18 @@ class TransController extends Controller
                 }
             }
         }
+    }
+
+    public function updateFacility($room_id,$w_last,$e_last,$t_date){
+       if($room_id){
+           $model = \backend\models\Room::findOne(['id'=>$room_id]);
+           if($model){
+               $model->last_pay_date = date('d-m-Y',$t_date);
+               $model->water_meter_last = $w_last;
+               $model->elect_meter_last = $e_last;
+               $model->save(false);
+           }
+       }
     }
 
 }
